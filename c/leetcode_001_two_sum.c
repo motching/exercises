@@ -27,7 +27,7 @@ int* twoSum(int* nums, int numsSize, int target) {
 }
 
 /*beats 90.12%*/
-/*hash table solution*/
+/*hash table solution: faster on larger arrays*/
 /*C does not have a standard hashtable so this is just a hack*/
 int* twoSum_hash(int* nums, int numsSize, int target) {
   int *res = malloc(2*sizeof(int));
@@ -68,19 +68,15 @@ int* twoSum_hash(int* nums, int numsSize, int target) {
   return res;
 }
 
-
 int main () {
-  int nums[3] = {3,2,3};
+  int nums[] = {3,2,3};
   int target = 6;
   int len = sizeof(nums)/sizeof(int);
   int *res;
-  for (int i=0; i<20000000;i++){
-
-//res = twoSum(nums, len, target);
-//  printf("res: %d, %d\n", *res, *(res+1));
+  res = twoSum(nums, len, target);
+  printf("res_bf: %d, %d\n", *res, *(res+1));
   res = twoSum_hash(nums, len, target);
-//  printf("res_fast: %d, %d\n", *res, *(res+1));
-}
+  printf("res_hash: %d, %d\n", *res, *(res+1));
   free(res);
   return 0;
 }
